@@ -16,7 +16,7 @@
                 scriptElement.src = e.replace(/\/+$/, '') + '/Kentico.Resource/CrossSiteTracking/Logger.js';
                 scriptSection.parentNode.insertBefore(scriptElement, scriptSection);
                 w[n]('init', { mainSiteUrl: e, document: d, window: w });
-            })(window, document, 'script', 'https://localhost', 'kxt');
+            })(window, document, 'script', 'https://localhost:53415', 'kxt');
 
             // Disables all tracking by default
             kxt('consentdefault', {
