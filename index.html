@@ -4,11 +4,11 @@
         
 
         <script type="text/javascript">
-            var consentName = 'marketing.cookies.consent';
+            var consentName = '';
             fetch("https://kbankweb20231004140405.azurewebsites.net/consent/marketing/")
             .then(response => consentName = response.json())
             //.then(json => console.log("Json"+JSON.stringify(json)));
-            alert("consentName value: " + consentName);
+            alert("consentName value: " + JSON.stringify(consentName));
 
             (function (w, d, s, e, n) {
                 w.XperienceTrackerName = n;
