@@ -16,7 +16,7 @@
                 scriptElement.src = e.replace(/\/+$/, '') + '/Kentico.Resource/CrossSiteTracking/Logger.js';
                 scriptSection.parentNode.insertBefore(scriptElement, scriptSection);
                 w[n]('init', { mainSiteUrl: e, document: d, window: w });
-            })(window, document, 'script', 'http://localhost:53415', 'kxt');
+            })(window, document, 'script', 'https://kbankweb20231004140405.azurewebsites.net', 'kxt');
 
             // Disables all tracking by default
             kxt('consentdefault', {
