@@ -4,18 +4,6 @@
         
 
         <script type="text/javascript">
-
-            // var consentName = '';
-            // fetch("https://kbankweb20231004140405.azurewebsites.net/consent/marketing/")
-            // .then(response => response.json())
-            // .then(data => {
-            //     consentName = JSON.stringify(data);
-            // })
-            // .then(() => {
-            //     alert("consentName value: " + JSON.stringify(consentName));
-            // })
-            //.then(json => console.log("Json"+JSON.stringify(json)));
-
             async function getConsentCodeName(){
                 let consentJson;
                 const res = await fetch("https://kbankweb20231004140405.azurewebsites.net/consent/marketing/");
@@ -45,12 +33,6 @@
             });
 
             getConsentCodeName().then((consentName) => {
-
-
-
-
-                alert(consentName);
-
                 // Retrieves and displays the consent text
                 kxt('consentdata', {
                         codeName: consentName,
@@ -73,8 +55,6 @@
                         }
                     });
 
-
-
                 // Logs a page visit activity (if tracking is enabled for the current contact)
                 kxt('pagevisit');
 
@@ -87,16 +67,6 @@
                 consentRevokeButton.addEventListener("click", function () {
                     trackingConsentRevoke(consentName);
                 })
-
-        
-
-                
-
-
-
-
-
-
             });
 
             // Click handler that creates a consent agreement for the current contact
@@ -111,7 +81,6 @@
                         });
                     }
                 });
-                alert("agreed");
             }
 
             // Click handler that revokes the tracking consent agreement for the current contact
@@ -126,7 +95,6 @@
                         });
                     }
                 });
-                alert("revoked");
             }
             
         </script>
