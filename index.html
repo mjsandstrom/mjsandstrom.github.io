@@ -6,9 +6,15 @@
         <script type="text/javascript">
             var consentName = '';
             fetch("https://kbankweb20231004140405.azurewebsites.net/consent/marketing/")
-            .then(response => consentName = response.json())
+            .then(response => response.json())
+            .then(data => {
+                consentName = data;
+            })
+            .then(() => {
+                alert("consentName value: " + JSON.stringify(consentName));
+            })
             //.then(json => console.log("Json"+JSON.stringify(json)));
-            alert("consentName value: " + JSON.stringify(consentName));
+            
 
             (function (w, d, s, e, n) {
                 w.XperienceTrackerName = n;
