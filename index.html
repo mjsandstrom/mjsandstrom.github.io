@@ -4,18 +4,27 @@
         
 
         <script type="text/javascript">
-            var consentName = '';
-            fetch("https://kbankweb20231004140405.azurewebsites.net/consent/marketing/")
-            .then(response => response.json())
-            .then(data => {
-                consentName = data;
-            })
-            .then(() => {
-                alert("consentName value: " + JSON.stringify(consentName));
-            })
-            //.then(json => console.log("Json"+JSON.stringify(json)));
-            
 
+            // var consentName = '';
+            // fetch("https://kbankweb20231004140405.azurewebsites.net/consent/marketing/")
+            // .then(response => response.json())
+            // .then(data => {
+            //     consentName = JSON.stringify(data);
+            // })
+            // .then(() => {
+            //     alert("consentName value: " + JSON.stringify(consentName));
+            // })
+            //.then(json => console.log("Json"+JSON.stringify(json)));
+
+            async function getConsentCodeName(){
+                let consentJson;
+                const res = await fetch("https://kbankweb20231004140405.azurewebsites.net/consent/marketing/");
+
+                consentJson = await res.json();
+
+                return JSON.stringify(consentJson).replace(/"+/g, '');
+            }
+            
             (function (w, d, s, e, n) {
                 w.XperienceTrackerName = n;
                 w[n] = w[n] || function () {
@@ -35,27 +44,32 @@
                 allow_datainput: false
             });
 
+            var consentName = getConsentCodeName();
+            alert(consentName);
+
             // Retrieves and displays the consent text
             kxt('consentdata', {
-                codeName: consentName,
-                cultureCode: 'en-US',
-                callback: consentData => {
-                    document.getElementById('lblConsentText').innerHTML = consentData.shortText;
-                }
-            });
-
-            // Enables tracking if the current contact has agreed with the consent
-            kxt('consentcontactstatus', {
-                codeName: consentName,
-                callback: consentStatus => {
-                    if (consentStatus.isAgreed) {
-                        kxt('updateconsent', {
-                            allow_tracking: true,
-                            allow_datainput: true
-                        });
+                    codeName: consentName,
+                    cultureCode: 'en-US',
+                    callback: consentData => {
+                        document.getElementById('lblConsentText').innerHTML = consentData.shortText;
                     }
-                }
-            });
+                });
+
+                // Enables tracking if the current contact has agreed with the consent
+                kxt('consentcontactstatus', {
+                    codeName: consentName,
+                    callback: consentStatus => {
+                        if (consentStatus.isAgreed) {
+                            kxt('updateconsent', {
+                                allow_tracking: true,
+                                allow_datainput: true
+                            });
+                        }
+                    }
+                });
+
+            
 
             // Logs a page visit activity (if tracking is enabled for the current contact)
             kxt('pagevisit');
