@@ -2,7 +2,6 @@
     <head>
         <title>KBank Microsite</title>
         
-
         <script type="text/javascript">
             async function getConsentCodeName(){
                 let consentJson;
@@ -97,11 +96,17 @@
                 });
             }
 
-            function logDownload(){
+            function logDownload() {
                 kxt('customactivity', {
                     type: 'filedownload',
                     value: window.location.pathname,
                     title: 'File downloaded - ' + this.getAttribute("alt")
+                });
+            }
+
+            function logLinkClick(linkLabel) {
+                kxt('click', {
+                    label: linkLabel
                 });
             }
             
@@ -112,6 +117,7 @@
         <h2>Welcome to a KBank Microsite</h2>
 
         <a href="./promotion.pdf" alt="pdf with details about a promotion" onclick="logDownload()" download>Download our promotional PDF</a>
+        <a href="https://www.kentico.com" alt="Link to our partner's website, Kentico" onclick ="logLinkClick(logLinkClick('VisitOurPartner'))">Visit our partner's site</a>
 
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam in tempus est. Maecenas eu urna id quam lacinia porta. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi quis massa efficitur, cursus nisi dictum, ullamcorper libero. Pellentesque a sodales tortor. Ut quis rhoncus justo, vel molestie quam. Fusce quis pretium mi. Suspendisse pretium ante quis massa ornare condimentum. In at tortor eros. Fusce vitae sem venenatis, mollis augue a, imperdiet sapien. Nullam at ultricies est. Sed elit lorem, blandit sed pharetra ullamcorper, elementum vitae elit. Etiam convallis risus non massa pharetra ultricies nec ac nibh. Ut elit felis, viverra sed nisi eu, interdum imperdiet risus.</p>
         <p>Nullam rhoncus facilisis urna id ultrices. In ut arcu ac nunc sodales luctus. Donec ut fermentum lacus. Integer vel tellus risus. Mauris sed porttitor dui. Nullam vitae ultricies nunc. Vestibulum eleifend ligula ac mi pretium luctus. Vestibulum quis ornare nisl.</p>
