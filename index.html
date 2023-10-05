@@ -8,7 +8,7 @@
             fetch("https://kbankweb20231004140405.azurewebsites.net/consent/marketing/")
             .then(response => consentName = response.json())
             //.then(json => console.log("Json"+JSON.stringify(json)));
-            alert("myVar value: " + myVar);
+            alert("consentName value: " + consentName);
 
             (function (w, d, s, e, n) {
                 w.XperienceTrackerName = n;
