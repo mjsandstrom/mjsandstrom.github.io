@@ -44,63 +44,75 @@
                 allow_datainput: false
             });
 
-            var consentName = getConsentCodeName();
-            alert(consentName);
+            getConsentCodeName().then((consentName) => {
 
-            // Retrieves and displays the consent text
-            kxt('consentdata', {
-                    codeName: consentName,
-                    cultureCode: 'en-US',
-                    callback: consentData => {
-                        document.getElementById('lblConsentText').innerHTML = consentData.shortText;
-                    }
-                });
 
-                // Enables tracking if the current contact has agreed with the consent
-                kxt('consentcontactstatus', {
-                    codeName: consentName,
-                    callback: consentStatus => {
-                        if (consentStatus.isAgreed) {
+
+
+                alert(consentName);
+
+                // Retrieves and displays the consent text
+                kxt('consentdata', {
+                        codeName: consentName,
+                        cultureCode: 'en-US',
+                        callback: consentData => {
+                            document.getElementById('lblConsentText').innerHTML = consentData.shortText;
+                        }
+                    });
+
+                    // Enables tracking if the current contact has agreed with the consent
+                    kxt('consentcontactstatus', {
+                        codeName: consentName,
+                        callback: consentStatus => {
+                            if (consentStatus.isAgreed) {
+                                kxt('updateconsent', {
+                                    allow_tracking: true,
+                                    allow_datainput: true
+                                });
+                            }
+                        }
+                    });
+
+
+
+                // Logs a page visit activity (if tracking is enabled for the current contact)
+                kxt('pagevisit');
+
+                // Click handler that creates a consent agreement for the current contact
+                var trackingConsentAgree = function trackingConsentAgree() {
+                    kxt('consentagree', {
+                        codeName: consentName,
+                        callback: () => {
+                            // Enables tracking for any subsequent logging scripts
                             kxt('updateconsent', {
                                 allow_tracking: true,
                                 allow_datainput: true
                             });
                         }
-                    }
-                });
+                    });
+                }
 
+                // Click handler that revokes the tracking consent agreement for the current contact
+                var trackingConsentRevoke = function trackingConsentRevoke() {
+                    kxt('consentrevoke', {
+                        codeName: consentName,
+                        callback: () => {
+                            // Disables tracking for any subsequent logging scripts
+                            kxt('updateconsent', {
+                                allow_tracking: false,
+                                allow_datainput: false
+                            });
+                        }
+                    });
+                }
+
+
+
+
+
+
+            });
             
-
-            // Logs a page visit activity (if tracking is enabled for the current contact)
-            kxt('pagevisit');
-
-            // Click handler that creates a consent agreement for the current contact
-            var trackingConsentAgree = function trackingConsentAgree() {
-                kxt('consentagree', {
-                    codeName: consentName,
-                    callback: () => {
-                        // Enables tracking for any subsequent logging scripts
-                        kxt('updateconsent', {
-                            allow_tracking: true,
-                            allow_datainput: true
-                        });
-                    }
-                });
-            }
-
-            // Click handler that revokes the tracking consent agreement for the current contact
-            var trackingConsentRevoke = function trackingConsentRevoke() {
-                kxt('consentrevoke', {
-                    codeName: consentName,
-                    callback: () => {
-                        // Disables tracking for any subsequent logging scripts
-                        kxt('updateconsent', {
-                            allow_tracking: false,
-                            allow_datainput: false
-                        });
-                    }
-                });
-            }
         </script>
 
     </head>
