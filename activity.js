@@ -51,7 +51,7 @@ function logDownload() {
     });
 }
 
-document.onload = function () {
+document.addEventListener('DOMContentLoaded', function () {
     // Disables all tracking by default
     kxt('consentdefault', {
         allow_tracking: false,
@@ -104,5 +104,5 @@ document.onload = function () {
             links[i].addEventListener(click, logLinkClick);
         }
     }
-}
+});
 
