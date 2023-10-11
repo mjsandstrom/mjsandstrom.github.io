@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function () {
             links[i].addEventListener("click", logDownload);
         }
         else{
-            links[i].addEventListener(click, logLinkClick);
+            links[i].addEventListener("click", logLinkClick);
         }
     }
 });
