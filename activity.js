@@ -42,6 +42,7 @@ function logLinkClick() {
     kxt('click', {
         label: this.getAttribute("alt")
     });
+    alert("click logged");
 }
 
 //Click handler that logs a file download activity
