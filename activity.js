@@ -39,9 +39,6 @@ function trackingConsentRevoke(consentName) {
 
 //Click handler that logs a link click.
 function logLinkClick() {
-    kxt('click', {
-        label: 'test'
-    });
     alert("click logged");
 }
 
