@@ -54,7 +54,7 @@ function logDownload() {
     });
 }
 
-window.onload = function () {
+document.onload = function () {
     // Disables all tracking by default
     kxt('consentdefault', {
         allow_tracking: false,
