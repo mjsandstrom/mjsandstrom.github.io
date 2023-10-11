@@ -39,7 +39,9 @@ function trackingConsentRevoke(consentName) {
 
 //Click handler that logs a link click.
 function logLinkClick() {
-    alert("click logged");
+    kxt('click', {
+        label: this.getAttribute("alt")
+    });
 }
 
 //Click handler that logs a file download activity
