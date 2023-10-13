@@ -49,7 +49,7 @@ function logDownload() {
     kxt('customactivity', {
         type: 'filedownload',
         value: window.location.pathname,
-        title: 'File downloaded - ' + this.getAttribute("alt")
+        title: this.getAttribute("alt")
     });
 }
 
