@@ -53,6 +53,7 @@ function logDownload() {
     });
 }
 
+//When the document loads
 document.addEventListener('DOMContentLoaded', function () {
     // Disables all tracking by default
     kxt('consentdefault', {
@@ -85,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Logs a page visit activity (if tracking is enabled for the current contact)
         kxt('pagevisit');
 
-        //Registers click event handlers for tracking functions
+        //Registers click event handlers for consent functions
         const consentAgreeButton = document.getElementById("btnConsentAgree");
         consentAgreeButton.addEventListener("click", function () {
             trackingConsentAgree(consentName);
@@ -97,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     const links = document.getElementsByTagName("a");
-
+    //Registers click event handlers for download and standard links
     for (let i = 0; i < links.length; i++) {
         if (links[i].hasAttribute("download")) {
             links[i].addEventListener("click", logDownload);
