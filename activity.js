@@ -1,4 +1,4 @@
-console.log('the change is pushed 3')
+console.log('the change is pushed 4')
 //Fetches the codename of the marketing consent
 async function getConsentCodeName(){
     let consentJson;
@@ -64,8 +64,8 @@ function logDownload() {
 document.addEventListener('DOMContentLoaded', function () {
     // Disables all tracking by default
     kxt('consentdefault', {
-        allow_tracking: false,
-        allow_datainput: false
+        allow_tracking: true,
+        allow_datainput: true
     });
     getConsentCodeName().then((consentName) => {
         console.log(consentName);
