@@ -95,6 +95,8 @@ document.addEventListener('DOMContentLoaded', function () {
         consentRevokeButton.addEventListener("click", function () {
             trackingConsentRevoke(consentName);
         })
+
+        console.log(consentName);
     });
 
     const links = document.getElementsByTagName("a");
