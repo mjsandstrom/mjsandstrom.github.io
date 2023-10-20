@@ -1,4 +1,4 @@
-console.log('the change is pushed 6')
+console.log('the change is pushed 7')
 //Fetches the codename of the marketing consent
 async function getConsentCodeName(){
     let consentJson;
@@ -12,7 +12,7 @@ async function getConsentCodeName(){
 
 // Click handler that creates a consent agreement for the current contact
 function trackingConsentAgree(consentName) {
-    console.log('agreed to consent 1');
+    console.log('agreed to consent 1: '+consentName);
     kxt('consentagree', {
         codeName: consentName,
         callback: () => {
@@ -28,7 +28,7 @@ function trackingConsentAgree(consentName) {
 
 // Click handler that revokes the tracking consent agreement for the current contact
 function trackingConsentRevoke(consentName) {
-    console.log('revoked consent 1');
+    console.log('revoked consent 1: '+consentName);
     kxt('consentrevoke', {
         codeName: consentName,
         callback: () => {
