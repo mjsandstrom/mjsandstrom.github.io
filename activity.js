@@ -61,6 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
         allow_datainput: false
     });
     getConsentCodeName().then((consentName) => {
+        console.log(consentName);
         // Retrieves and displays the consent text
         kxt('consentdata', {
             codeName: consentName,
