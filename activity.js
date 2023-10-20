@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Retrieves and displays the consent text
         kxt('consentdata', {
             codeName: consentName,
-            cultureCode: 'en-US',
+            languageName: 'en',
             callback: consentData => {
                 document.getElementById('lblConsentText').innerHTML = consentData.shortText;
             }
