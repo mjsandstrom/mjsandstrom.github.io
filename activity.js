@@ -1,4 +1,4 @@
-console.log('the change is pushed 1')
+console.log('the change is pushed 2')
 //Fetches the codename of the marketing consent
 async function getConsentCodeName(){
     let consentJson;
