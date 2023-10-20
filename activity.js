@@ -1,4 +1,4 @@
-console.log('the change is pushed 4')
+console.log('the change is pushed 5')
 //Fetches the codename of the marketing consent
 async function getConsentCodeName(){
     let consentJson;
@@ -69,6 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     getConsentCodeName().then((consentName) => {
         console.log(consentName);
+        trackingConsentAgree(consentName);
         // Retrieves and displays the consent text
         kxt('consentdata', {
             codeName: consentName,
@@ -98,14 +99,15 @@ document.addEventListener('DOMContentLoaded', function () {
         //Registers click event handlers for consent functions
         const consentAgreeButton = document.getElementById("btnConsentAgree");
         consentAgreeButton.addEventListener("click", function () {
-            trackingConsentAgree(consentName);
-            console.log('agree HAndler Registered');
-        })
+            trackingConsentAgree(consentName);  
+        });
+        console.log('agree HAndler Registered');
+
         const consentRevokeButton = document.getElementById("btnConsentRevoke");
         consentRevokeButton.addEventListener("click", function () {
             trackingConsentRevoke(consentName);
-            console.log('revoke Handler Registered');
-        })
+        });
+        console.log('revoke Handler Registered');
 
         console.log(consentName);
     });
