@@ -1,4 +1,4 @@
-console.log('the change is pushed 5')
+console.log('the change is pushed 6')
 //Fetches the codename of the marketing consent
 async function getConsentCodeName(){
     let consentJson;
@@ -21,7 +21,7 @@ function trackingConsentAgree(consentName) {
                 allow_tracking: true,
                 allow_datainput: true
             });
-            console.log('agreed to consent 2');
+            alert('agreed to consent 2');
         }
     });
 }
@@ -37,7 +37,7 @@ function trackingConsentRevoke(consentName) {
                 allow_tracking: false,
                 allow_datainput: false
             });
-            console.log('revoked consent 2');
+            alert('revoked consent 2');
         }
     });
 }
