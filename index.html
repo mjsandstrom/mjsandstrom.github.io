@@ -18,8 +18,8 @@
 
             // Disables all tracking by default
             kxt('consentdefault', {
-                allow_tracking: true,
-                allow_datainput: true
+                allow_tracking: false,
+                allow_datainput: false
             });
 
             // Retrieves and displays the consent text
@@ -28,6 +28,7 @@
                 languageName: 'en',
                 callback: consentData => {
                     document.getElementById('lblConsentText').innerHTML = consentData.shortText;
+                    console.log('consent text updated with callback');
                 }
             });
 
@@ -41,6 +42,7 @@
                             allow_datainput: true
                         });
                     }
+                    console.log('consent status callback fired, '+ consentStatus);
                 }
             });
 
@@ -57,6 +59,7 @@
                             allow_tracking: true,
                             allow_datainput: true
                         });
+                        console.log('consent agree callback hit');
                     }
                 });
             }
@@ -71,6 +74,7 @@
                             allow_tracking: false,
                             allow_datainput: false
                         });
+                        console.log('consent revoke callback hit');
                     }
                 });
             }
