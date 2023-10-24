@@ -30,7 +30,8 @@
                 callback: consentData => {
                     document.getElementById('lblConsentText').innerHTML = consentData.shortText;
                     console.log('consent text updated with callback');
-                }
+                },
+                onerror: t => console.log(t)
             });
 
             // Enables tracking if the current contact has agreed with the consent
@@ -44,7 +45,8 @@
                         });
                     }
                     console.log('consent status callback fired, '+ consentStatus);
-                }
+                },
+                onerror: t => console.log(t)
             });
 
             // Logs a page visit activity (if tracking is enabled for the current contact)
@@ -61,7 +63,8 @@
                             allow_datainput: true
                         });
                         console.log('consent agree callback hit');
-                    }
+                    },
+                    onerror: t => console.log(t)
                 });
             }
 
@@ -76,7 +79,8 @@
                             allow_datainput: false
                         });
                         console.log('consent revoke callback hit');
-                    }
+                    },
+                    onerror: t => console.log(t)
                 });
             }
 
