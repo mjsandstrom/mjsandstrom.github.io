@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,6 +18,10 @@
                 w[n]('init', { mainSiteUrl: e, document: d, window: w });
             })(window, document, 'script', 'https://kbankweb20231004140405.azurewebsites.net', 'kxt');
 
+
+
+            var consentName = 'marketing.cookies.consent';
+
             // Disables all tracking by default
             kxt('consentdefault', {
                 allow_tracking: false,
@@ -25,18 +30,17 @@
 
             // Retrieves and displays the consent text
             kxt('consentdata', {
-                codeName: 'marketing.cookies.consent',
+                codeName: consentName,
                 languageName: 'en',
                 callback: consentData => {
                     document.getElementById('lblConsentText').innerHTML = consentData.shortText;
                     console.log('consent text updated with callback');
-                },
-                onerror: t => console.log(t)
+                }
             });
 
             // Enables tracking if the current contact has agreed with the consent
             kxt('consentcontactstatus', {
-                codeName: 'marketing.cookies.consent',
+                codeName: consentName,
                 callback: consentStatus => {
                     if (consentStatus.isAgreed) {
                         kxt('updateconsent', {
@@ -45,8 +49,7 @@
                         });
                     }
                     console.log('consent status callback fired, '+ consentStatus);
-                },
-                onerror: t => console.log(t)
+                }
             });
 
             // Logs a page visit activity (if tracking is enabled for the current contact)
@@ -55,7 +58,7 @@
             // Click handler that creates a consent agreement for the current contact
             var trackingConsentAgree = function trackingConsentAgree() {
                 kxt('consentagree', {
-                    codeName: 'marketing.cookies.consent',
+                    codeName: consentName,
                     callback: () => {
                         // Enables tracking for any subsequent logging scripts
                         kxt('updateconsent', {
@@ -63,15 +66,14 @@
                             allow_datainput: true
                         });
                         console.log('consent agree callback hit');
-                    },
-                    onerror: t => console.log(t)
+                    }
                 });
             }
 
             // Click handler that revokes the tracking consent agreement for the current contact
             var trackingConsentRevoke = function trackingConsentRevoke() {
                 kxt('consentrevoke', {
-                    codeName: 'marketing.cookies.consent',
+                    codeName: consentName,
                     callback: () => {
                         // Disables tracking for any subsequent logging scripts
                         kxt('updateconsent', {
@@ -79,8 +81,7 @@
                             allow_datainput: false
                         });
                         console.log('consent revoke callback hit');
-                    },
-                    onerror: t => console.log(t)
+                    }
                 });
             }
 
@@ -96,13 +97,6 @@
     </head>
     <body>
         <h2>Welcome to the Microsite</h2>
-
-        <div>
-            <a href="./promotion.pdf" alt="pdf with details about a promotion" onclick="logLinkClick('promotion link');" download>Download our promotional PDF</a>
-        </div>
-        <div>
-            <a href="https://www.kentico.com" alt="Link to our partner's website, Kentico" onclick="logLinkClick('download link');">Visit our partner's site</a>
-        </div>
 
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam in tempus est. Maecenas eu urna id quam lacinia porta. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi quis massa efficitur, cursus nisi dictum, ullamcorper libero. Pellentesque a sodales tortor. Ut quis rhoncus justo, vel molestie quam. Fusce quis pretium mi. Suspendisse pretium ante quis massa ornare condimentum. In at tortor eros. Fusce vitae sem venenatis, mollis augue a, imperdiet sapien. Nullam at ultricies est. Sed elit lorem, blandit sed pharetra ullamcorper, elementum vitae elit. Etiam convallis risus non massa pharetra ultricies nec ac nibh. Ut elit felis, viverra sed nisi eu, interdum imperdiet risus.</p>
         <p>Nullam rhoncus facilisis urna id ultrices. In ut arcu ac nunc sodales luctus. Donec ut fermentum lacus. Integer vel tellus risus. Mauris sed porttitor dui. Nullam vitae ultricies nunc. Vestibulum eleifend ligula ac mi pretium luctus. Vestibulum quis ornare nisl.</p>
