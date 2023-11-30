@@ -73,7 +73,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     getConsentCodeName().then((consentName) => {
         console.log('consent name: ' + consentName);
-        trackingConsentAgree(consentName);
         // Retrieves and displays the consent text
         kxt('consentdata', {
             codeName: consentName,
