@@ -12,7 +12,7 @@ async function getConsentCodeName(){
 
 // Click handler that creates a consent agreement for the current contact
 function trackingConsentAgree(consentName) {
-    console.log('agreed to consent 1: '+consentName);
+    console.log('agreed to consent 1: '+ consentName);
     kxt('consentagree', {
         codeName: consentName,
         callback: () => {
@@ -21,7 +21,7 @@ function trackingConsentAgree(consentName) {
                 allow_tracking: true,
                 allow_datainput: true
             });
-            alert('agreed to consent 2');
+            alert('agreed to consent 2: ' + consentName);
         },
         onerror: t => console.log(t)
     });
@@ -29,7 +29,7 @@ function trackingConsentAgree(consentName) {
 
 // Click handler that revokes the tracking consent agreement for the current contact
 function trackingConsentRevoke(consentName) {
-    console.log('revoked consent 1: '+consentName);
+    console.log('revoked consent 1: '+ consentName);
     kxt('consentrevoke', {
         codeName: consentName,
         callback: () => {
@@ -38,7 +38,7 @@ function trackingConsentRevoke(consentName) {
                 allow_tracking: false,
                 allow_datainput: false
             });
-            alert('revoked consent 2');
+            alert('revoked consent 2: ' + consentName);
         },
         onerror: t => console.log(t)
     });
