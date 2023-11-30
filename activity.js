@@ -8,7 +8,6 @@ async function getConsentCodeName(){
     return JSON.stringify(consentJson).replace(/"+/g, '');
 }
 
-
 // Click handler that creates a consent agreement for the current contact
 function trackingConsentAgree(consentName) {
     kxt('consentagree', {
@@ -65,6 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
         allow_datainput: false,
         onerror: t => console.log(t)
     });
+
     getConsentCodeName().then((consentName) => {
         // Retrieves and displays the consent text
         kxt('consentdata', {
