@@ -1,5 +1,5 @@
 //Fetches the codename of the marketing consent
-async function getConsentCodeName(){
+function getConsentCodeName(){
     return fetch("https://trainingguidesweb20231129161152.azurewebsites.net/consent/marketing/")
         .then(response => response.json())
         .then(consentJson => JSON.stringify(consentJson).replace(/"+/g, ''));
@@ -47,7 +47,7 @@ function logLinkClick() {
 function logDownload() {
     kxt('customactivity', {
         type: 'filedownload',
-        value: this.getAttribute('alt') + ', '  + window.location.pathname,
+        value: this.getAttribute('alt') + ', ' + window.location.pathname,
         title: 'File download',
         onerror: t => console.log(t)
     });
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     getConsentCodeName()
-        .then((consentName) => {
+        .then(consentName => {
             // Retrieves and displays the consent text
             kxt('consentdata', {
                 codeName: consentName,
