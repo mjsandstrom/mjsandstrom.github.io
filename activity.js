@@ -68,11 +68,11 @@ function logDownload() {
 document.addEventListener('DOMContentLoaded', function () {
     // Disables all tracking by default
     kxt('consentdefault', {
-        allow_tracking: true,
-        allow_datainput: true
+        allow_tracking: false,
+        allow_datainput: false
     });
     getConsentCodeName().then((consentName) => {
-        console.log(consentName);
+        console.log('consent name: ' + consentName);
         trackingConsentAgree(consentName);
         // Retrieves and displays the consent text
         kxt('consentdata', {
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         allow_tracking: true,
                         allow_datainput: true
                     });
-                    console.log('consent enabled because it is already accepted');
+                    console.log('tracking enabled because consent is already accepted');
                 }
             },
             onerror: t => console.log(t)
