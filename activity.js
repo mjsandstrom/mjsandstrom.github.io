@@ -2,7 +2,7 @@ console.log('the change is pushed 7')
 //Fetches the codename of the marketing consent
 async function getConsentCodeName(){
     let consentJson;
-    const res = await fetch("https://kbankweb20231004140405.azurewebsites.net/consent/marketing/");
+    const res = await fetch("https://trainingguidesweb20231129161152.azurewebsites.net/consent/marketing/");
 
     consentJson = await res.json();
 
@@ -22,7 +22,8 @@ function trackingConsentAgree(consentName) {
                 allow_datainput: true
             });
             alert('agreed to consent 2');
-        }
+        },
+        onerror: t => console.log(t)
     });
 }
 
@@ -38,14 +39,16 @@ function trackingConsentRevoke(consentName) {
                 allow_datainput: false
             });
             alert('revoked consent 2');
-        }
+        },
+        onerror: t => console.log(t)
     });
 }
 
 //Click handler that logs a link click.
 function logLinkClick() {
     kxt('click', {
-        label: this.getAttribute("alt")
+        label: this.getAttribute("alt"),
+        onerror: t => console.log(t)
     });
     console.log('logged standard click');
 }
@@ -55,7 +58,8 @@ function logDownload() {
     kxt('customactivity', {
         type: 'filedownload',
         value: this.getAttribute('alt') + ', '  + window.location.pathname,
-        title: 'File download'
+        title: 'File download',
+        onerror: t => console.log(t)
     });
     console.log('logged file download');
 }
@@ -76,7 +80,8 @@ document.addEventListener('DOMContentLoaded', function () {
             languageName: 'en',
             callback: consentData => {
                 document.getElementById('lblConsentText').innerHTML = consentData.shortText;
-            }
+            },
+            onerror: t => console.log(t)
         });
 
         // Enables tracking if the current contact has agreed with the consent
@@ -90,7 +95,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     });
                     console.log('consent enabled because it is already accepted');
                 }
-            }
+            },
+            onerror: t => console.log(t)
         });
 
         // Logs a page visit activity (if tracking is enabled for the current contact)
