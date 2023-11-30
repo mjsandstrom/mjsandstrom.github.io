@@ -1,4 +1,3 @@
-console.log('the change is pushed 8')
 //Fetches the codename of the marketing consent
 async function getConsentCodeName(){
     let consentJson;
@@ -12,7 +11,6 @@ async function getConsentCodeName(){
 
 // Click handler that creates a consent agreement for the current contact
 function trackingConsentAgree(consentName) {
-    console.log('agreed to consent 1: '+ consentName);
     kxt('consentagree', {
         codeName: consentName,
         callback: () => {
@@ -21,7 +19,6 @@ function trackingConsentAgree(consentName) {
                 allow_tracking: true,
                 allow_datainput: true
             });
-            alert('agreed to consent 2: ' + consentName);
         },
         onerror: t => console.log(t)
     });
@@ -29,7 +26,6 @@ function trackingConsentAgree(consentName) {
 
 // Click handler that revokes the tracking consent agreement for the current contact
 function trackingConsentRevoke(consentName) {
-    console.log('revoked consent 1: '+ consentName);
     kxt('consentrevoke', {
         codeName: consentName,
         callback: () => {
@@ -38,7 +34,6 @@ function trackingConsentRevoke(consentName) {
                 allow_tracking: false,
                 allow_datainput: false
             });
-            alert('revoked consent 2: ' + consentName);
         },
         onerror: t => console.log(t)
     });
@@ -50,7 +45,6 @@ function logLinkClick() {
         label: this.getAttribute("alt"),
         onerror: t => console.log(t)
     });
-    console.log('logged standard click');
 }
 
 //Click handler that logs a file download activity
@@ -61,7 +55,6 @@ function logDownload() {
         title: 'File download',
         onerror: t => console.log(t)
     });
-    console.log('logged file download');
 }
 
 //When the document loads
@@ -69,10 +62,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // Disables all tracking by default
     kxt('consentdefault', {
         allow_tracking: false,
-        allow_datainput: false
+        allow_datainput: false,
+        onerror: t => console.log(t)
     });
     getConsentCodeName().then((consentName) => {
-        console.log('consent name: ' + consentName);
         // Retrieves and displays the consent text
         kxt('consentdata', {
             codeName: consentName,
@@ -92,29 +85,26 @@ document.addEventListener('DOMContentLoaded', function () {
                         allow_tracking: true,
                         allow_datainput: true
                     });
-                    console.log('tracking enabled because consent is already accepted');
                 }
             },
             onerror: t => console.log(t)
         });
 
         // Logs a page visit activity (if tracking is enabled for the current contact)
-        kxt('pagevisit');
+        kxt('pagevisit', {
+            onerror: t => console.log(t)
+        });
 
         //Registers click event handlers for consent functions
         const consentAgreeButton = document.getElementById("btnConsentAgree");
         consentAgreeButton.addEventListener("click", function () {
             trackingConsentAgree(consentName);  
         });
-        console.log('agree HAndler Registered');
 
         const consentRevokeButton = document.getElementById("btnConsentRevoke");
         consentRevokeButton.addEventListener("click", function () {
             trackingConsentRevoke(consentName);
         });
-        console.log('revoke Handler Registered');
-
-        console.log(consentName);
     });
 
     const links = document.getElementsByTagName("a");
@@ -122,11 +112,9 @@ document.addEventListener('DOMContentLoaded', function () {
     for (let i = 0; i < links.length; i++) {
         if (links[i].hasAttribute("download")) {
             links[i].addEventListener("click", logDownload);
-            console.log('added click handler for a download link');
         }
         else{
             links[i].addEventListener("click", logLinkClick);
-            console.log('added click handler for a standard link');
         }
     }
 });
